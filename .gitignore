@@ -131,4 +131,3 @@ dmypy.json
 
 # token and server_prefixes
 token.txt
-server_prefixes.json
