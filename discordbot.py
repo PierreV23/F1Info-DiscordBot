@@ -5,7 +5,7 @@ __author__forked__ = "" # NOTE: Put your version of `__author__` in here.
 
 
 from disnake.ext import commands
-import datetime
+import datetime as dt
 import json_rw
 import time
 import ergastwrapper
@@ -104,7 +104,7 @@ class F1Info(commands.Bot):
 
 
     async def on_ready(self):
-        print(f"The bot is ready! - {datetime.datetime.now()}")
+        print(f"The bot is ready! - {dt.datetime.now()}")
     
 
     async def on_message(self, ctx):
