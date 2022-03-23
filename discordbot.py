@@ -115,7 +115,7 @@ class F1Info(commands.Bot):
         # TODO: Make it so a message containing just a tag of the bot sends a dm to the guy pinging the bot, incase people forget prefixes....
 
 
-
+global SERVER_PREFIXES
 SERVER_PREFIXES: dict[int, str] = json_rw.get_json('server_prefixes.json')
 default_prefix = '-'
 
