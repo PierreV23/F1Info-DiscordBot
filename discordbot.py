@@ -68,9 +68,9 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             
             unix = int(session.datetime.timestamp())
             circuit = session.circuit
-            await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts `<t:{unix}:R>")
-            # delta = session.datetime - dt.datetime.utcnow()
-            # await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts ``in {delta.hours} hours, {delta.minutes} minutes and {delta.seconds} seconds.`")
+            # await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts `<t:{unix}:R>")
+            delta = session.datetime - dt.datetime.utcnow()
+            await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts ``in {delta.hours} hours, {delta.minutes} minutes and {delta.seconds} seconds.`")
         except Exception as e:
             ergastwrapper.cache.reset_cache()
             print("Exception occured when trying to send session timings.", e)

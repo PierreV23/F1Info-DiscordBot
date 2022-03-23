@@ -140,7 +140,7 @@ class Weekend:
     
 
     def is_sprint_weekend(self):
-        return True if self.Sprint else False
+        return True if self._Sprint else False
     
 
     @property
@@ -294,19 +294,3 @@ def get_weekend(year, round, series = Series.Formula1) -> Weekend:
     )
 
     return weekend
-
-
-
-
-#wknd = get_weekend(2022, 4, Series.Formula1)
-
-#print(wknd.FirstPractice.datetime.timestamp())
-
-#sess = wknd.get_session(SessionType.ThirdPractice)
-#sess_dt = sess.datetime
-#print(sess_dt, sess_dt.timestamp(), sess.session_type)
-#var = requests.get('http://ergast.com/api/f1/2022/1.json').json()
-#print(json.dumps(var, indent=4, sort_keys=True))
-# %%
-
-# %%
