@@ -127,6 +127,7 @@ def get_server_prefix(id: int):
 def set_server_prefix(id, prefix):
     global SERVER_PREFIXES
     SERVER_PREFIXES[id] = prefix
+    json_rw.set_json('server_prefixes.json', SERVER_PREFIXES)
 
 
 def get_prefix(_, message):
