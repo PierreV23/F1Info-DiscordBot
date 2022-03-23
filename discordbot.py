@@ -68,8 +68,22 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             unix = int(session.datetime.timestamp())
             circuit = session.circuit
             # await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts `<t:{unix}:R>")
-            delta = session.datetime - dt.datetime.utcnow()
-            await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts ``in {delta.hours} hours, {delta.minutes} minutes and {delta.seconds} seconds.`")
+            delta: dt.timedelta = session.datetime - dt.datetime.now(tz = dt.timezone.utc)
+            _days = delta.days
+            __rest = delta.seconds
+            _hours = delta.seconds // (60 * 60)
+            __rest -= _hours * 60 * 60
+            _minutes = __rest // 60
+            __rest -= _minutes * 60
+            _seconds = __rest
+            
+            text_days = f"**`{_days}`**` days"
+            text_hours = f"**`{_hours}`**` hours"
+            text_minutes = f"**`{_minutes}`**` minutes"
+            text_seconds = f"**`{_seconds}`**` seconds"
+
+            text_starts_in = f"`{session.name} starts in `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
+            await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> {text_starts_in}")
         except Exception as e:
             ergastwrapper.cache.reset_cache()
             print("Exception occured when trying to send session timings.", e)
@@ -85,12 +99,12 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
     @self.command(name='prefix')
     async def set_prefix(ctx: commands.Context):
         if ctx.author.guild_permissions.administrator:
-            prefix = get_server_prefix(ctx.guid.id)
+            prefix = get_server_prefix(ctx.guild.id)
             _temp = ctx.message.content.split(' ')
-            newprefix = _temp[1]
-            if len(_temp) < 2:
+            if len(_temp) != 2:
                 await ctx.channel.send(f"Something went wrong changing the prefix. The command should be formatted like: `{prefix}prefix %insert_new_prefix%`")
             else:
+                newprefix = _temp[1]
                 set_server_prefix(ctx.guild.id, newprefix)
                 await ctx.channel.send(f"Prefix changed from `{prefix}` to `{newprefix}`")
 
@@ -119,13 +133,13 @@ SERVER_PREFIXES: dict[int, str] = json_rw.get_json('server_prefixes.json')
 default_prefix = '-'
 
 
-def get_server_prefix(id: int): 
-    return SERVER_PREFIXES.get(id, default_prefix)
+def get_server_prefix(id: int or str): 
+    return SERVER_PREFIXES.get(str(id), default_prefix)
 
 
-def set_server_prefix(id, prefix):
+def set_server_prefix(id: int or str, prefix: str):
     global SERVER_PREFIXES
-    SERVER_PREFIXES[id] = prefix
+    SERVER_PREFIXES[str(id)] = prefix
     json_rw.set_json('server_prefixes.json', SERVER_PREFIXES)
 
 
