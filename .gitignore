@@ -127,8 +127,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-
-# token and server_prefixes
-token.txt
-server_prefixes.json
