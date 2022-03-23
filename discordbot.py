@@ -155,8 +155,10 @@ bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 
 
 #BOT_TOKEN = open("token.txt", 'r').readlines()[0].strip()
-import environ
-BOT_TOKEN = environ('TOKEN')
+import os
+BOT_TOKEN = os.environ.get('TOKEN')
+if BOT_TOKEN == None:
+    raise Exception("Token was None")
 
 
 bot.run(BOT_TOKEN)
