@@ -31,6 +31,20 @@ def get_current_weekend():
 
 
 def initialize_commands(self): # NOTE: This exists so i can collapse all commands in my IDE.
+    @self.command(name="debug-setround")
+    async def setf1round(ctx: commands.Context):
+        if ctx.author.id == 174134334628823041:
+            _temp = ctx.message.content.split()
+            if len(_temp) != 2:
+                ctx.channel.send("bruh")
+            else:
+                global F1ROUND
+                try:
+                    F1ROUND = int(_temp[1])
+                except:
+                    ctx.channel.send("bruh v2")
+    
+    
     @self.command(name="getround", aliases=['round'])
     async def getf1round(ctx: commands.Context):
         await ctx.channel.send(F1ROUND)
