@@ -52,16 +52,15 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         try:
             wknd = get_current_weekend()
             if "next" in cmd:
+                global F1ROUND
                 filtered = list(filter(lambda sess: (sess.datetime.timestamp() - time.time() >= 0), wknd.sessions))
                 ######################################################################################################### NOTE: I was bored
                 while bool(filtered) == False:                                                                          # NOTE: I was bored
-                    global F1ROUND                                                                                      # NOTE: I was bored
                     F1ROUND += 1                                                                                        # NOTE: I was bored
                     wknd = get_current_weekend()                                                                    	# NOTE: I was bored
                     filtered = list(filter(lambda sess: (sess.datetime.timestamp() - time.time() >= 0), wknd.sessions)) # NOTE: I was bored
                 ######################################################################################################### NOTE: I was bored TODO: Delete this childy behaviour.
                 session = min(filtered, key = lambda sess: sess.datetime.timestamp())
-                global F1ROUND
                 F1ROUND -= 1 # .
             else:
                 session = wknd.get_session(ergastwrapper.SessionType(cmd))
