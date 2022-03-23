@@ -153,7 +153,10 @@ def get_prefix(_, message):
 bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 
 
-BOT_TOKEN = open("token.txt", 'r').readlines()[0].strip()
+
+#BOT_TOKEN = open("token.txt", 'r').readlines()[0].strip()
+import environ
+BOT_TOKEN = environ('TOKEN')
 
 
 bot.run(BOT_TOKEN)
