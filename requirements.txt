@@ -1,4 +1,5 @@
 disnake
 requests
 datetime
-environ
+postgres
+prisma
