@@ -166,7 +166,7 @@ def get_prefix(_, message):
 
 bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 
-'''
+#'''
 import prisma
 
 from prisma import Client
@@ -195,7 +195,7 @@ async def main():
     print(serv)
     
     await prisma.connect()
-'''
+#'''
 
 #BOT_TOKEN = open("token.txt", 'r').readlines()[0].strip()
 import os
