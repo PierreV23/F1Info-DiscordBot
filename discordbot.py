@@ -90,10 +90,10 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             
             rest = delta.seconds
             hours = rest // (60 * 60)
-            rest -= _hours * 60 * 60
-            minutes = __rest // 60
-            rest -= _minutes * 60
-            seconds = __rest
+            rest -= hours * 60 * 60
+            minutes = rest // 60
+            rest -= minutes * 60
+            seconds = rest
 
             text_days = f"**`{_days}`**` days"
             text_hours = f"**`{_hours}`**` hours"
