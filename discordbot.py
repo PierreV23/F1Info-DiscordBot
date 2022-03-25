@@ -166,6 +166,33 @@ def get_prefix(_, message):
 
 bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 
+import asyncio
+from prisma import Prisma
+
+async def main():
+    prisma = Prisma()
+    await prisma.connect()
+    
+    serv = await prisma.server.create(
+        data = {
+            'id': 1,
+            'prefix': "f",
+        }
+    )
+    
+    await prisma.disconnect()
+    
+    await prisma.connect()
+    
+    serv = prisma.server.find_unique(
+        where = {
+            'id': 1
+        }
+    )
+    
+    print(serv)
+    
+    await prisma.connect()
 
 
 #BOT_TOKEN = open("token.txt", 'r').readlines()[0].strip()
