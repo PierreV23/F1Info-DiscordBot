@@ -21,6 +21,6 @@ model Post {
 }
 
 model Server {
-  id      Int
+  id      Int     @id
   prefix  String
 }
