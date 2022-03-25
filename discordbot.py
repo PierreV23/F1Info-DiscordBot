@@ -169,6 +169,8 @@ bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 #'''
 import prisma
 
+for _ in prisma.__dict__: print(_)
+
 from prisma import Prisma
 
 async def main():
