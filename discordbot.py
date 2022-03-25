@@ -166,7 +166,7 @@ def get_prefix(_, message):
 
 bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 
-import asyncio
+
 import prisma
 from prisma import Client
 
