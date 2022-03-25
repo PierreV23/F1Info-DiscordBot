@@ -172,7 +172,7 @@ import prisma
 from prisma import Client
 
 async def main():
-    prisma = Client()
+    prisma = Prisma()
     await prisma.connect()
     
     serv = await prisma.server.create(
