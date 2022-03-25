@@ -88,22 +88,25 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 started = True
                 delta = abs(delta)
             
+            days = delta.days
+
             rest = delta.seconds
+
             hours = rest // (60 * 60)
             rest -= hours * 60 * 60
             minutes = rest // 60
             rest -= minutes * 60
             seconds = rest
 
-            text_days = f"**`{_days}`**` days"
-            text_hours = f"**`{_hours}`**` hours"
-            text_minutes = f"**`{_minutes}`**` minutes"
+            text_days = f"**`{days}`**` days"
+            text_hours = f"**`{hours}`**` hours"
+            text_minutes = f"**`{minutes}`**` minutes"
             
             if started:
-                text_seconds = f"**`{_seconds}`**` seconds ago"
+                text_seconds = f"**`{seconds}`**` seconds ago"
                 text_starts_in = f"`{session.name} started `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
             else:
-                text_seconds = f"**`{_seconds}`**` seconds"
+                text_seconds = f"**`{seconds}`**` seconds"
                 text_starts_in = f"`{session.name} starts in `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"            
             
 
