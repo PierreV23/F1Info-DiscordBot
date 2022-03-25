@@ -169,7 +169,7 @@ bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 #'''
 import prisma
 
-from prisma import Client
+from prisma import Prisma
 
 async def main():
     prisma = Prisma()
