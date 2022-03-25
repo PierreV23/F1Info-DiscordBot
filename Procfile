@@ -1,3 +1,3 @@
-worker: python discordbot.py
-
 release: prisma generate
+
+worker: python discordbot.py
