@@ -84,8 +84,12 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             # await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> `{session.name} starts `<t:{unix}:R>")
             delta: dt.timedelta = session.datetime - dt.datetime.now(tz = dt.timezone.utc)
             _days = delta.days
-            __rest = delta.seconds
-            _hours = delta.seconds // (60 * 60)
+            if _days < 0:
+                __rest = 24 * 60 * 60 - delta.seconds
+            else:
+                __rest = delta.seconds
+            
+            _hours = __rest // (60 * 60)
             __rest -= _hours * 60 * 60
             _minutes = __rest // 60
             __rest -= _minutes * 60
