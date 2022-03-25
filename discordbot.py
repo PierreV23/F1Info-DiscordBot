@@ -98,9 +98,9 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             
             if _days < 0:
                 _days = abs(_days) - 1
-                _hours = 24 - _hours
-                _minutes = 60 - _minutes
-                _seconds = 60 - _seconds
+                _hours = _hours
+                _minutes = _minutes
+                _seconds = _seconds
                 text_days = f"**`{_days}`**` days"
                 text_hours = f"**`{_hours}`**` hours"
                 text_minutes = f"**`{_minutes}`**` minutes"
