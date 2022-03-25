@@ -85,32 +85,24 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             delta: dt.timedelta = session.datetime - dt.datetime.now(tz = dt.timezone.utc)
             _days = delta.days
             if _days < 0:
-                __rest = 24 * 60 * 60 - delta.seconds
-            else:
-                __rest = delta.seconds
+                started = True
+                delta = abs(delta)
             
-            _hours = __rest // (60 * 60)
-            __rest -= _hours * 60 * 60
-            _minutes = __rest // 60
-            __rest -= _minutes * 60
-            _seconds = __rest
+            rest = delta.seconds
+            hours = rest // (60 * 60)
+            rest -= _hours * 60 * 60
+            minutes = __rest // 60
+            rest -= _minutes * 60
+            seconds = __rest
 
+            text_days = f"**`{_days}`**` days"
+            text_hours = f"**`{_hours}`**` hours"
+            text_minutes = f"**`{_minutes}`**` minutes"
             
-            if _days < 0:
-                _days = abs(_days) - 1
-                _hours = _hours
-                _minutes = _minutes
-                _seconds = _seconds
-                text_days = f"**`{_days}`**` days"
-                text_hours = f"**`{_hours}`**` hours"
-                text_minutes = f"**`{_minutes}`**` minutes"
-                text_seconds = f"**`{_seconds}`**` seconds"
+            if started:
                 text_seconds = f"**`{_seconds}`**` seconds ago"
                 text_starts_in = f"`{session.name} started `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
             else:
-                text_days = f"**`{_days}`**` days"
-                text_hours = f"**`{_hours}`**` hours"
-                text_minutes = f"**`{_minutes}`**` minutes"
                 text_seconds = f"**`{_seconds}`**` seconds"
                 text_starts_in = f"`{session.name} starts in `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"            
             
