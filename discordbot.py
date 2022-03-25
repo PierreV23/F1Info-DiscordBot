@@ -91,17 +91,23 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             __rest -= _minutes * 60
             _seconds = __rest
 
-            if _days < 0:
-                _hours = 24 - _hours
-                _minutes = 60 - _minutes
-                _seconds = 60 - _seconds
-            
             text_days = f"**`{_days}`**` days"
             text_hours = f"**`{_hours}`**` hours"
             text_minutes = f"**`{_minutes}`**` minutes"
             text_seconds = f"**`{_seconds}`**` seconds"
-
             text_starts_in = f"`{session.name} starts in `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
+
+            if _days < 0:
+                _days = abs(_days) - 1
+                _hours = 24 - _hours
+                _minutes = 60 - _minutes
+                _seconds = 60 - _seconds
+                text_seconds = f"**`{_seconds}`**` seconds ago"
+                text_starts_in = f"`{session.name} started `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
+            
+            
+
+            
             await ctx.channel.send(f"**{circuit.name},  {circuit.locality},  {circuit.country}**\n> `{session.name} happens on `<t:{unix}:F>\n> {text_starts_in}")
         except Exception as e:
             ergastwrapper.cache.reset_cache()
