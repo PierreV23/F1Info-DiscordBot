@@ -96,7 +96,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             text_minutes = f"**`{_minutes}`**` minutes"
             text_seconds = f"**`{_seconds}`**` seconds"
             text_starts_in = f"`{session.name} starts in `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
-
+            print(type(_days), _days)
             if _days < 0:
                 _days = abs(_days) - 1
                 _hours = 24 - _hours
@@ -104,6 +104,8 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 _seconds = 60 - _seconds
                 text_seconds = f"**`{_seconds}`**` seconds ago"
                 text_starts_in = f"`{session.name} started `{text_days}, `{text_hours}, `{text_minutes} and `{text_seconds}`"
+            
+            print(text_starts_in)
             
             
 
