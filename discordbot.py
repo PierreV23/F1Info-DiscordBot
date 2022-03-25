@@ -87,6 +87,8 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             if _days < 0:
                 started = True
                 delta = abs(delta)
+            else:
+                started = False
             
             days = delta.days
 
