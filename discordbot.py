@@ -90,6 +90,11 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             _minutes = __rest // 60
             __rest -= _minutes * 60
             _seconds = __rest
+
+            if _days < 0:
+                _hours = 24 - _hours
+                _minutes = 60 - _minutes
+                _seconds = 60 - _seconds
             
             text_days = f"**`{_days}`**` days"
             text_hours = f"**`{_hours}`**` hours"
@@ -113,6 +118,8 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
     @self.command(name='prefix')
     async def set_prefix(ctx: commands.Context):
         if ctx.author.guild_permissions.administrator:
+            ctx.channel.send(f"Sorry, our bot doesnt have a database yet, and thus cant have custom prefixes.")
+            '''
             prefix = get_server_prefix(ctx.guild.id)
             _temp = ctx.message.content.split(' ')
             if len(_temp) != 2:
@@ -121,6 +128,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 newprefix = _temp[1]
                 set_server_prefix(ctx.guild.id, newprefix)
                 await ctx.channel.send(f"Prefix changed from `{prefix}` to `{newprefix}`")
+            '''
 
 
 
@@ -142,11 +150,13 @@ class F1Info(commands.Bot):
         # TODO: Make it so a message containing just a tag of the bot sends a dm to the guy pinging the bot, incase people forget prefixes....
 
 
-global SERVER_PREFIXES
-SERVER_PREFIXES: dict[int, str] = json_rw.get_json('server_prefixes.json')
+# global SERVER_PREFIXES
+# SERVER_PREFIXES: dict[int, str] = json_rw.get_json('server_prefixes.json')
 default_prefix = '-'
 
 
+# @@@ NOTE: Disabled for the time being, will have to be replaced by a database @@@ (TODO)
+'''
 def get_server_prefix(id: int or str): 
     return SERVER_PREFIXES.get(str(id), default_prefix)
 
@@ -160,46 +170,16 @@ def set_server_prefix(id: int or str, prefix: str):
 def get_prefix(_, message):
     id = message.guild.id
     return get_server_prefix(id)
-
-
-
-
-bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
-
 '''
-import prisma
 
-for _ in prisma.__dict__: print(_)
 
-from prisma import Prisma
 
-async def main():
-    prisma = Prisma()
-    await prisma.connect()
-    
-    serv = await prisma.server.create(
-        data = {
-            'id': 1,
-            'prefix': "f",
-        }
-    )
-    
-    await prisma.disconnect()
-    
-    await prisma.connect()
-    
-    serv = prisma.server.find_unique(
-        where = {
-            'id': 1
-        }
-    )
-    
-    print(serv)
-    
-    await prisma.connect()
-'''
+# bot = F1Info(command_prefix = get_prefix, case_insensitive=True) TODO: Look above
+bot = F1Info(command_prefix = default_prefix, case_insensitive=True)
+
 
 #BOT_TOKEN = open("token.txt", 'r').readlines()[0].strip()
+
 import os
 BOT_TOKEN = os.environ.get('TOKEN')
 if BOT_TOKEN == None:
