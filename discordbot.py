@@ -167,10 +167,10 @@ def get_prefix(_, message):
 bot = F1Info(command_prefix = get_prefix, case_insensitive=True)
 
 import asyncio
-from prisma import Prisma
+from prisma import Client
 
 async def main():
-    prisma = Prisma()
+    prisma = Client()
     await prisma.connect()
     
     serv = await prisma.server.create(
