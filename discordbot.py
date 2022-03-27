@@ -23,7 +23,7 @@ def get_current_weekend():
     weekend = ergastwrapper.get_weekend(F1YEAR, F1ROUND)
     while True:
         print(weekend.Race.datetime.timestamp() - time.time() + 3*60*60, weekend.circuit.name)
-        if weekend.Race.datetime.timestamp() - time.time() + 3*60*60 < 0: # TODO: Less hours?
+        if weekend.Race.datetime.timestamp() - time.time() + 3*60*60 > 0: # TODO: Less hours?
             break
         else:
             F1ROUND += 1
