@@ -123,7 +123,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
     
     @self.command("raw_timestamps")
     async def raw_timestamps(ctx):
-        wknd = ergastwrapper.get_current_weekend()
+        wknd = get_current_weekend()
         sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
         raw = ""
         for sesname, sesobj in sessions.items():
