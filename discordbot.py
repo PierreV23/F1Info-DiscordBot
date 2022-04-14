@@ -120,6 +120,18 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             print("Exception occured when trying to send session timings.", e)
             await ctx.channel.send(f"Something went wrong, try again later.")
     
+    
+    @self.command("raw_timestamps")
+    async def raw_timestamps(ctx):
+        wknd = ergastwrapper.get_current_weekend()
+        sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
+        raw = ""
+        for sesname, sesobj in session:
+            if sesobj
+                raw += f"{sesname}: {sesobj.datetime.timestamp()}"
+        
+        await ctx.channel.send(raw)
+        
 
     @self.command(name='creator', aliases=['owner', 'maker', 'bot', 'github'])
     async def send_creator(ctx: commands.Context):
