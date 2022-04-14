@@ -128,7 +128,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         raw = ""
         for sesname, sesobj in sessions.items():
             if sesobj:
-                raw += f"{sesname}: {sesobj.datetime.timestamp()}"
+                raw += f"{sesname}: {sesobj.datetime.timestamp()}\n"
         
         await ctx.channel.send(raw)
         
