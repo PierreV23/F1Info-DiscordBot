@@ -50,6 +50,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
     
     @self.command(name="getround", aliases=['round'])
     async def getf1round(ctx: commands.Context):
+        global F1ROUND
         await ctx.channel.send(F1ROUND)
     
 
@@ -164,7 +165,25 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 """
             )
         await ctx.channel.send(txt)
-            
+    
+
+    @self.command(name = "rawceek", aliases = ["RAWECEEK", "RAWECEEK?", "raweceek", "raweceek?"])
+    async def raweceek(ctx):
+        wknd = get_current_weekend()
+        race_tmsp  = wknd.get_session(ergastwrapper.SessionType("race")).datetime.timestamp()
+        now_tmsp = time.time()
+        delta = race_tmsp - now_tmsp
+        day = dt.datetime.now(tz = dt.timezone.utc).weekday()
+        if delta < 7*24*3600 and day != 7 or delta < 24*3600 and day == 7:
+            sub = ctx.message.content.split()
+            if len(sub) > 1:
+                sub = " ".join(sub[1:])
+                if "@everyone" in sub:
+                    await ctx.channel.send("DONT TRY TO PING @ EVERYONE YOU LITTLE ...")
+                else:
+                    await ctx.channel.send(sub)
+            else:
+                await ctx.channel.send("ITS RAWE CEEK TIME BABEEEEEE")
         
 
     @self.command(name='creator', aliases=['owner', 'maker', 'bot', 'github'])
