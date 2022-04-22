@@ -167,8 +167,8 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         await ctx.channel.send(txt)
     
 
-    @self.command(name = "rawceek", aliases = ["RAWECEEK", "RAWECEEK?", "raweceek", "raweceek?"])
-    async def raweceek(ctx):
+    @self.command(name = "rawceek", aliases = ["raweceek", "raweceek?, rawceek?"])
+    async def is_raweceek(ctx):
         wknd = get_current_weekend()
         race_tmsp  = wknd.get_session(ergastwrapper.SessionType("race")).datetime.timestamp()
         now_tmsp = time.time()
@@ -197,7 +197,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
     @self.command(name='prefix')
     async def set_prefix(ctx: commands.Context):
         if ctx.author.guild_permissions.administrator:
-            ctx.channel.send(f"Sorry, our bot doesnt have a database yet, and thus cant have custom prefixes.")
+            await ctx.channel.send(f"Sorry, our bot doesnt have a database yet, and thus cant have custom prefixes.")
             '''
             prefix = get_server_prefix(ctx.guild.id)
             _temp = ctx.message.content.split(' ')
