@@ -141,24 +141,28 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
         circuit = sessions["fp1"].circuit
         if wknd.is_sprint_weekend():
-            txt = f"""
-            **{circuit.name},  {circuit.locality},  {circuit.country}**
-            > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
-            > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
-            > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
-            > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
-            > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
-            """
+            txt = (
+                f"""
+                **{circuit.name},  {circuit.locality},  {circuit.country}**
+                > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+                > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+                > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+                > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
+                > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+                """
+            )
         else:
-            txt = f"""
-            **{circuit.name},  {circuit.locality},  {circuit.country}**
-            > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
-            > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
-            > **FP3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
-            > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
-            > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
-            > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
-            """
+            txt = (
+                f"""
+                **{circuit.name},  {circuit.locality},  {circuit.country}**
+                > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+                > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+                > **FP3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
+                > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+                > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
+                > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+                """
+            )
         await ctx.channel.send(txt)
             
         
