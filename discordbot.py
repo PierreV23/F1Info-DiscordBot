@@ -167,7 +167,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         await ctx.channel.send(txt)
     
 
-    @self.command(name = "rawceek", aliases = ["raweceek", "raweceek?, rawceek?"])
+    @self.command(name = "rawceek", aliases = ["raweceek", "raweceek?, rawceek?", "raceweek", "raceweek?"])
     async def is_raweceek(ctx):
         wknd = get_current_weekend()
         race_tmsp  = wknd.get_session(ergastwrapper.SessionType("race")).datetime.timestamp()
