@@ -184,6 +184,8 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                     await ctx.channel.send(sub)
             else:
                 await ctx.channel.send("ITS RAWE CEEK TIME BABEEEEEE")
+        else:
+            await ctx.channel.send("Sadly no rawe ceek :(")
         
 
     @self.command(name='creator', aliases=['owner', 'maker', 'bot', 'github'])
