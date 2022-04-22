@@ -121,7 +121,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             await ctx.channel.send(f"Something went wrong, try again later.")
     
     
-    @self.command("raw_timestamps")
+    @self.command(name = "raw_timestamps")
     async def raw_timestamps(ctx):
         wknd = get_current_weekend()
         sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
@@ -133,7 +133,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         await ctx.channel.send(raw)
     
 
-    @self.command("schedule", aliases = ["weekend", "timing", "timings"])
+    @self.command(name = "schedule", aliases = ["weekend", "timing", "timings"])
     async def schedule(ctx):
         wknd = get_current_weekend()
         sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
