@@ -37,13 +37,15 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
         if ctx.author.id == 174134334628823041:
             _temp = ctx.message.content.split()
             if len(_temp) != 2:
-                ctx.channel.send("bruh")
+                await ctx.channel.send("bruh")
             else:
                 global F1ROUND
                 try:
+                    og = F1ROUND
                     F1ROUND = int(_temp[1])
+                    await ctx.channel.send(f"Round changed from {og} to {F1ROUND}")
                 except:
-                    ctx.channel.send("bruh v2")
+                    await ctx.channel.send("bruh v2")
     
     
     @self.command(name="getround", aliases=['round'])
