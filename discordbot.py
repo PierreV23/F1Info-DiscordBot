@@ -157,6 +157,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
             > **sprint**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
             > **race**: <t:{int(sessions['race'].datetime.timestamp())}:F>
             """
+        await ctx.channel.send(txt)
             
         
 
