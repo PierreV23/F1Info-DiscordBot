@@ -131,6 +131,33 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 raw += f"{sesname}: '{int(sesobj.datetime.timestamp())}'\n"
         
         await ctx.channel.send(raw)
+    
+
+    @self.command("schedule", aliases = ["weekend", "timing", "timings"])
+    async def schedule(ctx):
+        wknd = get_current_weekend()
+        sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
+        circuit = sessions["fp1"].circuit
+        if wknd.is_sprint_weekend():
+            txt = f"""
+            **{circuit.name},  {circuit.locality},  {circuit.country}**
+            > **fp1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+            > **q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+            > **fp2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+            > **sprint**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
+            > **race**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+            """
+        else:
+            txt = f"""
+            **{circuit.name},  {circuit.locality},  {circuit.country}**
+            > **fp1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+            > **fp2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+            > **fp3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
+            > **q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+            > **sprint**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
+            > **race**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+            """
+            
         
 
     @self.command(name='creator', aliases=['owner', 'maker', 'bot', 'github'])
