@@ -160,7 +160,6 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
                 > **FP3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
                 > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
-                > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
                 > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
                 """
             )
