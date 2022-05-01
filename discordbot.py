@@ -43,7 +43,7 @@ def weekend_message(*, wknd_round: int = 0):
 > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
 > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
 > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
-            > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+> **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
             """
         )
     else:
