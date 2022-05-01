@@ -38,23 +38,23 @@ def weekend_message(*, wknd_round: int = 0):
     if wknd.is_sprint_weekend():
         txt = (
             f"""
-            **{circuit.name},  {circuit.locality},  {circuit.country}**
-            > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
-            > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
-            > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
-            > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
+**{circuit.name},  {circuit.locality},  {circuit.country}**
+> **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+> **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+> **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+> **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
             > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
             """
         )
     else:
         txt = (
             f"""
-            **{circuit.name},  {circuit.locality},  {circuit.country}**
-            > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
-            > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
-            > **FP3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
-            > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
-            > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+**{circuit.name},  {circuit.locality},  {circuit.country}**
+> **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+> **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+> **FP3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
+> **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+> **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
             """
         )
     return txt
@@ -84,7 +84,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 try:
                     txt = weekend_message(wknd_round = i)
                     msg += "\n" + txt + "\n"
-                    if len(msg) > 1500:
+                    if len(msg) > 1750:
                         await ctx.channel.send(f"```\n{msg}\n```")
                         msg = ""
                     i += 1
