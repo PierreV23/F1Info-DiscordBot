@@ -84,7 +84,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                 try:
                     txt = weekend_message(wknd_round = i)
                     msg += "\n" + txt + "\n"
-                    if len(msg) > 3500:
+                    if len(msg) > 1500:
                         await ctx.channel.send(f"```\n{msg}\n```")
                         msg = ""
                     i += 1
