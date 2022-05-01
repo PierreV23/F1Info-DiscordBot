@@ -78,7 +78,6 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
     @self.command(name="debug-getwholeyear")
     async def getwholeyear(ctx: commands.Context):
         if ctx.author.id == 174134334628823041:
-            shell = lambda f: f"```\n{f}\n```"
             msg = ""
             i = 1
             while True:
@@ -88,7 +87,7 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                     i += 1
                 except:
                     break
-            await ctx.reply(shell(msg))
+            await ctx.channel.send(f"```\n{msg}\n```")
 
     
     
