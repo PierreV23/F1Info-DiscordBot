@@ -31,6 +31,34 @@ def get_current_weekend():
     return weekend
 
 
+def weekend_message(*, wknd_round: int = 0):
+    wknd = ergastwrapper.get_weekend(F1YEAR, wknd_round) if wknd_round >= 1 else get_current_weekend()
+    sessions = {name:wknd.get_session(ergastwrapper.SessionType(name)) for name in ["fp1", "fp2", "fp3", "q", "q1", "q2", "q3", "sprint", "race"]}
+    circuit = sessions["fp1"].circuit
+    if wknd.is_sprint_weekend():
+        txt = (
+            f"""
+            **{circuit.name},  {circuit.locality},  {circuit.country}**
+            > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+            > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+            > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+            > **SPRINT**: <t:{int(sessions['sprint'].datetime.timestamp())}:F>
+            > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+            """
+        )
+    else:
+        txt = (
+            f"""
+            **{circuit.name},  {circuit.locality},  {circuit.country}**
+            > **FP1**: <t:{int(sessions['fp1'].datetime.timestamp())}:F>
+            > **FP2**: <t:{int(sessions['fp2'].datetime.timestamp())}:F>
+            > **FP3**: <t:{int(sessions['fp3'].datetime.timestamp())}:F>
+            > **Q**: <t:{int(sessions['q'].datetime.timestamp())}:F>
+            > **RACE**: <t:{int(sessions['race'].datetime.timestamp())}:F>
+            """
+        )
+    return txt
+
 def initialize_commands(self): # NOTE: This exists so i can collapse all commands in my IDE.
     @self.command(name="debug-setround")
     async def setf1round(ctx: commands.Context):
@@ -46,6 +74,22 @@ def initialize_commands(self): # NOTE: This exists so i can collapse all command
                     await ctx.channel.send(f"Round changed from {og} to {F1ROUND}")
                 except:
                     await ctx.channel.send("bruh v2")
+    
+    @self.command(name="debug-getwholeyear")
+    async def getwholeyear(ctx: commands.Context):
+        if ctx.author.id == 174134334628823041:
+            shell = lambda f: f"```\n{f}\n```"
+            msg = ""
+            i = 1
+            while True:
+                try:
+                    txt = weekend_message(wknd_round = i)
+                    msg += "\n" + txt + "\n"
+                    i += 1
+                except:
+                    break
+            await ctx.reply(shell(msg))
+
     
     
     @self.command(name="getround", aliases=['round'])
