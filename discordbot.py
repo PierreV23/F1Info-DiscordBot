@@ -13,7 +13,7 @@ import ergastwrapper
 
 global F1YEAR
 global F1ROUND
-F1YEAR = 2022
+F1YEAR = 2023
 F1ROUND = 1
 
 
